@@ -24,5 +24,6 @@ urlpatterns = [
     path("connections/", views.connections, name="blog-connections"),
     path("top-posts/", views.top, name="blog-top-posts"),
     path("investor-forum/", views.forum, name="blog-forum"),
+    
     path('like/<int:pk>', likeView, name='like_post'),
 ]

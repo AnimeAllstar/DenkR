@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post
 from django.views.generic import (
     ListView,
@@ -10,7 +10,6 @@ from django.views.generic import (
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
-from django.urls import reverse_lazy,reverse
 
 def home(request):
     context = {
@@ -96,6 +95,13 @@ def forum(request):
     return render(request, "blog/forum.html", {"title": "DenkR - Investor Forum"})
 
 def likeView(request,pk):
-    post = get_object_or_404(Post,id=request.POST.get('post_id'))
-    post.likes.add(request.user)
-    return HttpResponseRedirect(reverse('post-detail', args=[str(pk)]))
+    temp = 0
+    if 'unlike_id' in request.POST:
+        temp = request.POST.get('unlike_id')
+        post = get_object_or_404(Post,id=temp)
+        post.likes.remove(request.user)
+    elif 'like_id' in request.POST:
+        temp = request.POST.get('like_id')
+        post = get_object_or_404(Post,id=temp)
+        post.likes.add(request.user)
+    return HttpResponseRedirect("/#" + temp)        

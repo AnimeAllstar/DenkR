@@ -1,4 +1,5 @@
 {% extends "blog/base.html" %}
+
 {% block content %}
 <!--Search Bar-->
 
@@ -10,7 +11,7 @@
     {% for post in posts %}
 
     <div class="card">
-        <div class="card-body">
+        <div class="card-body" id="{{ post.id }}">
             <h5 class="card-title"><a class="article-title" href="{% url 'post-detail' post.id%}">{{ post.title }}</a>
             </h5>
             <button class="btn tag mb-2">Idea</button>
@@ -27,10 +28,10 @@
             <form action="{% url 'like_post' post.pk %}" method="POST">
                 {% csrf_token %}
                 {% if user in post.likes.all %}
-                <button class="custom-btn liked" type="submit" , name="post_id" , value="{{ post.id }}"><i
+                <button class="custom-btn liked" type="submit" , name="unlike_id" , value="{{ post.id }}"><i
                         class="fas fa-heart"></i></button>
                 {% else %}
-                <button class="custom-btn unliked" type="submit" , name="post_id" , value="{{ post.id }}"><i
+                <button class="custom-btn unliked" type="submit" , name="like_id" , value="{{ post.id }}"><i
                         class="fas fa-heart"></i></button>
                 {% endif %}
             </form>
