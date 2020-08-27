@@ -1,6 +1,21 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
+
+<!--Like Toggle-->
+
+<script>
+    function submitButtonStyle(like_btn) {
+        if (like_btn.classList.contains("liked")) {
+            like_btn.classList.remove("liked");
+            like_btn.classList.add("unliked");
+        } else if (like_btn.classList.contains("unliked")) {
+            like_btn.classList.remove("unliked");
+            like_btn.classList.add("liked");
+        }
+    }
+</script>
+
 <!--Search Bar-->
 
 <form class="form-inline mb-4">
@@ -28,11 +43,11 @@
             <form action="{% url 'like_post' post.pk %}" method="POST">
                 {% csrf_token %}
                 {% if user in post.likes.all %}
-                <button class="custom-btn liked" type="submit" , name="unlike_id" , value="{{ post.id }}"><i
-                        class="fas fa-heart"></i></button>
+                <button class="custom-btn liked" onclick="submitButtonStyle(this)" type="submit" , name="like_id" ,
+                    value="{{ post.id }}"><i class="fas fa-heart"></i></button>
                 {% else %}
-                <button class="custom-btn unliked" type="submit" , name="like_id" , value="{{ post.id }}"><i
-                        class="fas fa-heart"></i></button>
+                <button class="custom-btn unliked" onclick="submitButtonStyle(this)" type="submit" , name="like_id" ,
+                    value="{{ post.id }}"><i class="fas fa-heart"></i></button>
                 {% endif %}
             </form>
         </div>

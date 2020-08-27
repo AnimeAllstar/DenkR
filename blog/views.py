@@ -12,6 +12,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 
+
 def home(request):
     context = {
         "posts": Post.objects.all()
@@ -78,8 +79,6 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return False
 
 
-
-
 def about(request):
     return render(request, "blog/about.html", {"title": "DenkR - About"})
 
@@ -95,14 +94,15 @@ def top(request):
 def forum(request):
     return render(request, "blog/forum.html", {"title": "DenkR - Investor Forum"})
 
-def likeView(request,pk):
-    temp = 0
-    if 'unlike_id' in request.POST:
-        temp = request.POST.get('unlike_id')
-        post = get_object_or_404(Post,id=temp)
-        post.likes.remove(request.user)
-    elif 'like_id' in request.POST:
+
+def likeView(request, pk):
+    if User.is_authenticated:
         temp = request.POST.get('like_id')
-        post = get_object_or_404(Post,id=temp)
-        post.likes.add(request.user)
-    return HttpResponseRedirect("/#" + temp)        
+        post = get_object_or_404(Post, id=temp)
+        print(post.likes.all())
+        print(User.first_name)
+        if request.user in post.likes.all():
+            post.likes.remove(request.user)
+        else:
+            post.likes.add(request.user)
+    return HttpResponseRedirect("/#" + temp)
