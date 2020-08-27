@@ -2,28 +2,39 @@
 {% block content %}
 
 <div class="content-section">
+
+    {% for post in posts %}
+
+    {% if forloop.first %}
+
     <div class="media mt-4 ml-5">
-        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+        <img class="rounded-circle account-img" src="{{ post.author.profile.image.url }}">
         <div class="media-body">
             <h2 class="account-heading">{{ view.kwargs.username }}</h2>
-            <p class="text-secondary">{{ view.kwargs.email }} <br>         <!--Change Email Var-->
+            <p class="text-secondary">{{ post.author.email }} <br>
+                <!--Change Email Var-->
                 University of British Columbia <br>
                 {{ page_obj.paginator.count }} Posts
             </p>
         </div>
         <button class="btn tag mb-2">Connect</button>
     </div>
-{% for post in posts %}
-<article class="media content-section p-4 m-4">
-    <div class="media-body">
-        <div class="article-metadata">
-            <small class="text-muted">{{ post.date }}</small>
+
+    {%endif%}
+
+    {%endfor%}
+
+    {% for post in posts %}
+    <article class="media content-section p-4 m-4">
+        <div class="media-body">
+            <div class="article-metadata">
+                <small class="text-muted">{{ post.date }}</small>
+            </div>
+            <h2><a class="article-title" href="{% url 'post-detail' post.id%}">{{ post.title }}</a></h2>
+            <p class="article-content">{{ post.content }}</p>
         </div>
-        <h2><a class="article-title" href="{% url 'post-detail' post.id%}">{{ post.title }}</a></h2>
-        <p class="article-content">{{ post.content }}</p>
-    </div>
-</article>
-{% endfor %}
+    </article>
+    {% endfor %}
 
 </div>
 
