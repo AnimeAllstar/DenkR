@@ -10,7 +10,7 @@ from django.views.generic import (
 )
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse
 
 
 def home(request):
@@ -94,15 +94,14 @@ def top(request):
 def forum(request):
     return render(request, "blog/forum.html", {"title": "DenkR - Investor Forum"})
 
-
-def likeView(request, pk):
-    if User.is_authenticated:
-        temp = request.POST.get('like_id')
-        post = get_object_or_404(Post, id=temp)
-        print(post.likes.all())
-        print(User.first_name)
-        if request.user in post.likes.all():
-            post.likes.remove(request.user)
+def likeView(request):
+    if request.method == 'GET':
+        post_id = request.GET['post_id']
+        liked_post = get_object_or_404(Post, pk=post_id)
+        if request.user in liked_post.likes.all():
+            liked_post.likes.remove(request.user)
         else:
-            post.likes.add(request.user)
-    return HttpResponseRedirect("/#" + temp)
+            liked_post.likes.add(request.user)
+        return HttpResponse("Success!")
+    else:
+        return HttpResponse("Request method is not a GET")

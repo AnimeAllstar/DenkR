@@ -2,10 +2,10 @@
 
 {% block content %}
 
-<!--Like Toggle-->
+<!--Class Toggle and Reload Cache-->
 
 <script>
-    function submitButtonStyle(like_btn) {
+    function toggleClass(like_btn) {
         if (like_btn.classList.contains("liked")) {
             like_btn.classList.remove("liked");
             like_btn.classList.add("unliked");
@@ -14,9 +14,17 @@
             like_btn.classList.add("liked");
         }
     }
+
+    window.addEventListener("pageshow", function (event) {
+        var perfEntries = performance.getEntriesByType("navigation");
+
+        if (perfEntries[0].type === "back_forward") {
+            location.reload(true);
+        }
+    });
 </script>
 
-<!--Search Bar-->
+<!--Main-->
 
 <form class="form-inline mb-4">
     <input class="form-control mr-sm-2 w-75" type="search" placeholder="Search">
@@ -40,16 +48,15 @@
             <p class="card-text"><small class="text-muted">Created by <a
                         href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a> on
                     {{ post.date|date }}</small></p>
-            <form action="{% url 'like_post' post.pk %}" method="POST">
-                {% csrf_token %}
-                {% if user in post.likes.all %}
-                <button class="custom-btn liked" onclick="submitButtonStyle(this)" type="submit" , name="like_id" ,
-                    value="{{ post.id }}"><i class="fas fa-heart"></i></button>
-                {% else %}
-                <button class="custom-btn unliked" onclick="submitButtonStyle(this)" type="submit" , name="like_id" ,
-                    value="{{ post.id }}"><i class="fas fa-heart"></i></button>
-                {% endif %}
-            </form>
+            {% if user in post.likes.all %}
+            <a class="like-wrapper" id="like-{{post.id}}" href="#" data-id="{{ post.id }}">
+                <button class="custom-btn liked" onclick="toggleClass(this)"><i class="fas fa-heart"></i></button>
+            </a>
+            {% else %}
+            <a class="like-wrapper" id="like-{{post.id}}" href="#" data-id="{{ post.id }}">
+                <button class="custom-btn unliked" onclick="toggleClass(this)"><i class="fas fa-heart"></i></button>
+            </a>
+            {% endif %}
         </div>
     </div>
 
