@@ -1,4 +1,48 @@
 {% extends "blog/base.html" %}
-    {% block content %}
-        <h1>This is the start of Investor Forum</h1>
-    {% endblock content%}
+
+{% block childHead %}
+<style>
+    img {
+        height: 100px;
+        width: 100px;
+    }
+
+    .wrapper {
+        width: 100%;
+        height: 100%;
+    }
+
+    .main {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%)
+    }
+
+    .progress {
+        height: 20px;
+    }
+
+    .progress-bar {
+        background-color: #55a0f0;
+        color: white;
+        height: 20px;
+    }
+</style>
+{% endblock childHead %}
+
+{% block content %}
+
+<!--Main-->
+<div class="wrapper">
+    <div class="text-center main">
+        <h1 class="display-1">Locked</h1>
+        <div class="progress mt-3 mb-4">
+            <div class="progress-bar" role="progressbar" style="width: 65%;">65%</div>
+        </div>
+        <h1 class="display-4" style="font-size:30px;">Collect 3,500 Honor Points More</h1>
+    </div>
+</div>
+
+{% endblock content%}
