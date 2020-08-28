@@ -1,4 +1,140 @@
 {% extends "blog/base.html" %}
-    {% block content %}
-        <h1>This is the start of University Resources Page</h1>
-    {% endblock content%}
+{% block childHead %}
+<style>
+    .group-title {
+        cursor: pointer;
+    }
+
+    .group-title:hover {
+        background-color: #ebebeb;
+    }
+
+    .list-group-item.active {
+        background-color: #eeeeee;
+        border: none;
+        color: black;
+    }
+
+    .list-group-item:hover {
+        cursor: pointer;
+    }
+</style>
+
+<script>
+    function openCity(evt, category) {
+        var i, tabcontent, tablinks, selectedtab;
+
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        selectedtab = document.getElementsByClassName(category);
+        for (i = 0; i < selectedtab.length; i++) {
+            selectedtab[i].style.display = "block";
+        }
+
+        evt.currentTarget.className += " active";
+    }
+
+    document.getElementById("defaultOpen").click();
+</script>
+{% endblock childHead %}
+
+{% block content %}
+<div class="col-md-3 px-4">
+    <div id="accordion">
+        <div class="card">
+            <div class="card-header group-title" id="headingOne" data-toggle="collapse" data-target="#collapseOne"
+                aria-expanded="true" aria-controls="collapseOne">
+                <p class="mb-0">Group 1 </p>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body p-0">
+                    <ul class="list-group tab list-group-flush">
+                        <li class="list-group-item tablinks" onclick="openCity(event, 'dog')">
+                            Accelerator</li>
+                        <li class="list-group-item tablinks" onclick="openCity(event, 'cat')">Lab2Launch</li>
+                        <li class="list-group-item tablinks" onclick="openCity(event, 'mouse')">CORE</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header group-title" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo"
+                aria-expanded="true" aria-controls="collapseTwo">
+                <p class="mb-0">Group 2 </p>
+            </div>
+
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                <div class="card-body p-0">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Faculty</li>
+                        <li class="list-group-item">Departments</li>
+                        <li class="list-group-item">Professors</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header group-title" id="headingThree" data-toggle="collapse" data-target="#collapseThree"
+                aria-expanded="true" aria-controls="collapseThree">
+                <p class="mb-0">Courses </p>
+            </div>
+
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                <div class="card-body p-0">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Business</li>
+                        <li class="list-group-item">Entrepreneurship</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-8 px-4">
+    <div class="cat tabcontent card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">TITLE</h5>
+            <button class="btn tag mb-2">Idea</button>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+    </div>
+
+    <div class="dog tabcontent card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">TITLE</h5>
+            <button class="btn tag mb-2">Idea</button>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum
+                dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+    </div>
+
+    <div class="mouse tabcontent card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">TITLE</h5>
+            <button class="btn tag mb-2">Idea</button>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum
+                dolor sit amet, consectetur adipiscing elit. Lorem ipsum
+                dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+    </div>
+
+    <div class="cat tabcontent card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">TITLE</h5>
+            <button class="btn tag mb-2">Idea</button>
+            <p class="card-text">Lorem ipsum.</p>
+        </div>
+    </div>
+</div>
+
+{% endblock content%}
