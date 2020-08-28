@@ -5,22 +5,22 @@
 
     {% for post in posts %}
 
-    {% if forloop.first %}
+        {% if forloop.first %}
 
-    <div class="media mt-4 ml-5">
-        <img class="rounded-circle account-img" src="{{ post.author.profile.image.url }}">
-        <div class="media-body">
-            <h2 class="account-heading">{{ view.kwargs.username }}</h2>
-            <p class="text-secondary">{{ post.author.email }} <br>
-                <!--Change Email Var-->
-                University of British Columbia <br>
-                {{ page_obj.paginator.count }} Posts
-            </p>
-        </div>
-        <button class="btn tag mb-2">Connect</button>
-    </div>
+            <div class="media mt-4 ml-5">
+                <img class="rounded-circle account-img" src="{{ post.author.profile.image.url }}">
+                <div class="media-body">
+                    <h2 class="account-heading">{{ view.kwargs.username }}</h2>
+                    <p class="text-secondary">{{ post.author.email }} <br>
+                        <!--Change Email Var-->
+                        University of British Columbia <br>
+                        {{ page_obj.paginator.count }} Posts
+                    </p>
+                </div>
+                <a class="btn btn-outline-primary" id="connect" role="button" href="{% url 'add-friend' view.kwargs.username %}">Connect</a>
+            </div>
 
-    {%endif%}
+        {%endif%}
 
     {%endfor%}
 

@@ -19,7 +19,7 @@ urlpatterns = [
     path("post/<int:pk>/update/", PostUpdateView.as_view(), name="post-update"),
     path("post/<int:pk>/delete/", PostDeleteView.as_view(), name="post-delete"),
     path("about/", views.about, name="blog-about"),
-
+    path("connect/add/<str:username>>", views.add_friend, name="add-friend"),
 
     path("connections/", views.connections, name="blog-connections"),
     path("top-posts/", views.top, name="blog-top-posts"),

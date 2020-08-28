@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Post
+from .models import Post, Friend
 from django.contrib.auth.models import User
 from django.views.generic import (
     ListView,
@@ -10,12 +10,16 @@ from django.views.generic import (
 )
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 
 def home(request):
+
+    friend = Friend.objects.get(current_user=request.user)
+    friends = friend.users.all()
     context = {
-        "posts": Post.objects.all()
+        "posts": Post.objects.all(),
+        "friends": friends
     }
     return render(request, "blog/home.html", context)
 
@@ -105,3 +109,22 @@ def likeView(request):
         return HttpResponse("Success!")
     else:
         return HttpResponse("Request method is not a GET")
+
+
+def add_friend(request, username):
+    main_user = request.user
+    to_connect = User.objects.get(username = username)
+
+    #check if users are already connected
+    friends = Friend.objects.filter(current_user=main_user, users=to_connect)
+    is_connected = True if friends else False
+
+    if is_connected:
+        Friend.remove_friend(current_user=main_user, new_friend=to_connect)
+        is_connected = False
+    else:
+        Friend.make_friend(current_user=main_user, new_friend=to_connect)
+        is_connected = True
+
+    return redirect('/user/'+username)
+

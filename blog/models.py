@@ -29,6 +29,7 @@ class Friend(models.Model):
         )
         friend.users.add(new_friend)
 
+    @classmethod
     def remove_friend(cls, current_user, new_friend):
         friend, created = cls.objects.get_or_create(
             current_user=current_user
