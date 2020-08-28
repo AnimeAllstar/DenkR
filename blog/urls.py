@@ -22,7 +22,7 @@ urlpatterns = [
     path("connect/add/<str:username>>", views.add_friend, name="add-friend"),
 
     path("connections/", views.connections, name="blog-connections"),
-    path("top-posts/", views.top, name="blog-top-posts"),
+    path("university-resources/", views.uni_resources, name="blog-uni-resources"),
     path("investor-forum/", views.forum, name="blog-forum"),
     
     path('like/',likeView, name='like-post'),

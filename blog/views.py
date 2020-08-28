@@ -91,8 +91,8 @@ def connections(request):
     return render(request, "blog/connections.html", {"title": "Your Connections"})
 
 
-def top(request):
-    return render(request, "blog/top.html", {"title": "DenkR - Top Posts"})
+def uni_resources(request):
+    return render(request, "blog/uni_resources.html", {"title": "DenkR - University Resources"})
 
 
 def forum(request):
