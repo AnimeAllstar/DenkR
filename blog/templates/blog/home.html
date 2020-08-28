@@ -2,84 +2,106 @@
 
 {% block content %}
 
-<!--Class Toggle and Reload Cache-->
+<div class="col-md-8 px-4">
 
-<script>
-    function toggleClass(like_btn) {
-        if (like_btn.classList.contains("liked")) {
-            like_btn.classList.remove("liked");
-            like_btn.classList.add("unliked");
-        } else if (like_btn.classList.contains("unliked")) {
-            like_btn.classList.remove("unliked");
-            like_btn.classList.add("liked");
+    <!--Class Toggle and Reload Cache-->
+
+    <script>
+        function toggleClass(like_btn) {
+            if (like_btn.classList.contains("liked")) {
+                like_btn.classList.remove("liked");
+                like_btn.classList.add("unliked");
+            } else if (like_btn.classList.contains("unliked")) {
+                like_btn.classList.remove("unliked");
+                like_btn.classList.add("liked");
+            }
         }
-    }
 
-    window.addEventListener("pageshow", function (event) {
-        var perfEntries = performance.getEntriesByType("navigation");
+        window.addEventListener("pageshow", function (event) {
+            var perfEntries = performance.getEntriesByType("navigation");
 
-        if (perfEntries[0].type === "back_forward") {
-            location.reload(true);
-        }
-    });
-</script>
+            if (perfEntries[0].type === "back_forward") {
+                location.reload(true);
+            }
+        });
+    </script>
 
-<!--Main-->
+    <!--Main-->
 
-<form class="form-inline mb-4">
-    <input class="form-control mr-sm-2 w-75" type="search" placeholder="Search">
-    <button class="btn btn-outline-primary mb-2 my-sm-0" type="submit">Search</button>
-</form>
-<div class="card-columns">
-    {% for post in posts %}
+    <form class="form-inline mb-4">
+        <input class="form-control mr-sm-2 w-75" type="search" placeholder="Search">
+        <button class="btn btn-outline-primary mb-2 my-sm-0" type="submit">Search</button>
+    </form>
+    <div class="card-columns">
+        {% for post in posts %}
 
-    <div class="card">
-        <div class="card-body" id="{{ post.id }}">
-            <h5 class="card-title"><a class="article-title" href="{% url 'post-detail' post.id%}">{{ post.title }}</a>
-            </h5>
-            <button class="btn tag mb-2">Idea</button>
+        <div class="card">
+            <div class="card-body" id="{{ post.id }}">
+                <h5 class="card-title"><a class="article-title"
+                        href="{% url 'post-detail' post.id%}">{{ post.title }}</a>
+                </h5>
+                <button class="btn tag mb-2">Idea</button>
 
-            <p class="card-text">{{ post.content|slice:"0:100" }}
-                {% if post.content|length > 100 %}
-                . . .
+                <p class="card-text">{{ post.content|slice:"0:100" }}
+                    {% if post.content|length > 100 %}
+                    . . .
+                    {% endif %}
+                </p>
+
+                <p class="card-text"><small class="text-muted">Created by <a
+                            href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a> on
+                        {{ post.date|date }}</small></p>
+                {% if user in post.likes.all %}
+                <a class="like-wrapper" id="like-{{post.id}}" href="#" data-id="{{ post.id }}">
+                    <button class="custom-btn liked" onclick="toggleClass(this)"><i class="fas fa-heart"></i></button>
+                </a>
+                {% else %}
+                <a class="like-wrapper" id="like-{{post.id}}" href="#" data-id="{{ post.id }}">
+                    <button class="custom-btn unliked" onclick="toggleClass(this)"><i class="fas fa-heart"></i></button>
+                </a>
                 {% endif %}
-            </p>
-
-            <p class="card-text"><small class="text-muted">Created by <a
-                        href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a> on
-                    {{ post.date|date }}</small></p>
-            {% if user in post.likes.all %}
-            <a class="like-wrapper" id="like-{{post.id}}" href="#" data-id="{{ post.id }}">
-                <button class="custom-btn liked" onclick="toggleClass(this)"><i class="fas fa-heart"></i></button>
-            </a>
-            {% else %}
-            <a class="like-wrapper" id="like-{{post.id}}" href="#" data-id="{{ post.id }}">
-                <button class="custom-btn unliked" onclick="toggleClass(this)"><i class="fas fa-heart"></i></button>
-            </a>
-            {% endif %}
+            </div>
         </div>
+
+        {% endfor %}
     </div>
 
+    {% if is_paginated %}
+    {% if page_obj.has_previous %}
+    <a class="btn btn-outline-primary mb-4" href="?page=1">First</a>
+    <a class="btn btn-outline-primary mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+    {% endif %}
+
+    {% for num in page_obj.paginator.page_range %}
+    {% if page_obj.number == num %}
+    <a class="btn btn-primary mb-4" href="?page={{ num }}">{{ num }}</a>
+    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+    <a class="btn btn-outline-primary mb-4" href="?page={{ num }}">{{ num }}</a>
+    {% endif %}
     {% endfor %}
+
+    {% if page_obj.has_next %}
+    <a class="btn btn-outline-primary mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+    <a class="btn btn-outline-primary mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+    {% endif %}
+    {% endif %}
+
 </div>
 
-{% if is_paginated %}
-{% if page_obj.has_previous %}
-<a class="btn btn-outline-primary mb-4" href="?page=1">First</a>
-<a class="btn btn-outline-primary mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-{% endif %}
+<!--SideBar-->
 
-{% for num in page_obj.paginator.page_range %}
-{% if page_obj.number == num %}
-<a class="btn btn-primary mb-4" href="?page={{ num }}">{{ num }}</a>
-{% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-<a class="btn btn-outline-primary mb-4" href="?page={{ num }}">{{ num }}</a>
-{% endif %}
-{% endfor %}
+<div class="col-md-3 mb-3 px-4">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Quickies</h5>
+            <p class="card-text">Check these out!</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Anouncements</li>
+            <li class="list-group-item">Top Posts</li>
+            <li class="list-group-item">Latest Posts</li>
+        </ul>
+    </div>
+</div>
 
-{% if page_obj.has_next %}
-<a class="btn btn-outline-primary mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
-<a class="btn btn-outline-primary mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-{% endif %}
-{% endif %}
 {% endblock content %}

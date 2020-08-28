@@ -1,24 +1,42 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <div class="content-section">
-      <div class="media">
-        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
-        <div class="media-body">
-          <h2 class="account-heading">{{ user.username }}</h2>
-          <p class="text-secondary">{{ user.email }}</p>
-        </div>
+<div class="col-md-8 px-4">
+  <div class="content-section">
+    <div class="media">
+      <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+      <div class="media-body">
+        <h2 class="account-heading">{{ user.username }}</h2>
+        <p class="text-secondary">{{ user.email }}</p>
       </div>
-      <form method='POST' enctype="multipart/form-data">
-            {% csrf_token %}
-            <fieldset class ="form-group">
-                <legend class="border-bottom mb-4">Profile Info</legend>
-                {{ u_form|crispy }}
-                {{ p_form|crispy }}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-primary" type="submit">Update</button>
-            </div>
-      </form>
     </div>
+    <form method='POST' enctype="multipart/form-data">
+      {% csrf_token %}
+      <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Profile Info</legend>
+        {{ u_form|crispy }}
+        {{ p_form|crispy }}
+      </fieldset>
+      <div class="form-group">
+        <button class="btn btn-outline-primary" type="submit">Update</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!--SideBar-->
+
+<div class="col-md-3 mb-3 px-4">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Quickies</h5>
+      <p class="card-text">Check these out!</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Anouncements</li>
+      <li class="list-group-item">Top Posts</li>
+      <li class="list-group-item">Latest Posts</li>
+    </ul>
+  </div>
+</div>
 {% endblock content %}

@@ -1,23 +1,40 @@
 {% extends "blog/base.html" %}
 {% block content %}
-
-    <article class="media content-section">
-        <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
-        <div class="media-body">
-          <div class="article-metadata">
-            <a class="mr-2" href="{% url 'user-posts' object.author.username %}">{{ object.author }}</a>
-            <small class="text-muted">{{ post.date|date }}</small>
-            {% if object.author == user %}
-              <div>
-                  <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id%}">Update</a>
-                  <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id%}">Delete</a>
-              </div>
-            {% endif %}
-          </div>
-          <h2 class="article-title">{{ object.title }}</h2>
-          <p class="article-content">{{ object.content }}</p>
-          <p>{{ object.likes.all|length }} Likes</p>
+<div class="col-md-8 px-4">
+  <article class="media content-section">
+    <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
+    <div class="media-body">
+      <div class="article-metadata">
+        <a class="mr-2" href="{% url 'user-posts' object.author.username %}">{{ object.author }}</a>
+        <small class="text-muted">{{ post.date|date }}</small>
+        {% if object.author == user %}
+        <div>
+          <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id%}">Update</a>
+          <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id%}">Delete</a>
         </div>
-    </article>
+        {% endif %}
+      </div>
+      <h2 class="article-title">{{ object.title }}</h2>
+      <p class="article-content">{{ object.content }}</p>
+      <p>{{ object.likes.all|length }} Likes</p>
+    </div>
+  </article>
+</div>
+
+<!--SideBar-->
+
+<div class="col-md-3 mb-3 px-4">
+  <div class="card">
+      <div class="card-body">
+          <h5 class="card-title">Quickies</h5>
+          <p class="card-text">Check these out!</p>
+      </div>
+      <ul class="list-group list-group-flush">
+          <li class="list-group-item">Anouncements</li>
+          <li class="list-group-item">Top Posts</li>
+          <li class="list-group-item">Latest Posts</li>
+      </ul>
+  </div>
+</div>
 
 {% endblock content %}

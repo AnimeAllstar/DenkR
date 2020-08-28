@@ -1,10 +1,12 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
+<div class="col-md-8 px-4">
+
     <div class="content-section">
         <form method='POST'>
             {% csrf_token %}
-            <fieldset class ="form-group">
+            <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Delete Post</legend>
                 <h2>Are you sure you want to delete the post "{{ object.title }}"</h2>
             </fieldset>
@@ -14,5 +16,22 @@
             </div>
         </form>
     </div>
-{% endblock content %}
+</div>
 
+<!--SideBar-->
+
+<div class="col-md-3 mb-3 px-4">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Quickies</h5>
+            <p class="card-text">Check these out!</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Anouncements</li>
+            <li class="list-group-item">Top Posts</li>
+            <li class="list-group-item">Latest Posts</li>
+        </ul>
+    </div>
+</div>
+
+{% endblock content %}
