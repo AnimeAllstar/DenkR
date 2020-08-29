@@ -135,15 +135,19 @@ def add_friend(request, username):
 
     return redirect('/user/'+username)
 
+
 def searchView(request):
     if request.method == 'GET':
-        queryset = []
         search_value = request.GET.get('value')
-        for i in search_value.split(" "):
-            for j in Post.objects.all():
-                i = i.lower()
-                lower_titles = [x.lower() for x in j.title.split(" ")]
-                lower_contents = [x.lower() for x in j.content.split(" ")]
-                if i in lower_titles or i in lower_contents:
-                    queryset.append(j)
-        return render(request, 'blog/search.html', {'posts': list(set(queryset))})
+        if len(search_value.strip()) == 0:
+            return HttpResponseRedirect("/")
+        else:
+            queryset = []
+            for i in search_value.split(" "):
+                for j in Post.objects.all():
+                    i = i.lower()
+                    lower_titles = [x.lower() for x in j.title.split(" ")]
+                    lower_contents = [x.lower() for x in j.content.split(" ")]
+                    if i in lower_titles or i in lower_contents:
+                        queryset.append(j)
+            return render(request, 'blog/search.html', {'posts': list(set(queryset))})
