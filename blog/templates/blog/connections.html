@@ -18,9 +18,13 @@
     <div class="card mx-auto">
         <h5 class="card-header"> Connection List </h5>
         <ul class="list-group list-group-flush">
+            {% if friends|length == 0 %}
+            <li class="list-group-item">No Connections</li>
+            {% else %}
             {% for friend in friends %}
             <li class="list-group-item">{{ friend }}</li>
             {% endfor %}
+            {% endif %}
         </ul>
     </div>
 </div>
