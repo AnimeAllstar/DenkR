@@ -21,7 +21,7 @@
 </style>
 
 <script>
-    function openCity(evt, category) {
+    function openTabs(evt, category) {
         var i, tabcontent, tablinks, selectedtab;
 
         tabcontent = document.getElementsByClassName("tabcontent");
@@ -58,11 +58,11 @@
             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-body p-0">
                     <ul class="list-group tab list-group-flush">
-                        <li class="list-group-item tablinks" onclick="openCity(event, 'accel')">
+                        <li class="list-group-item tablinks" onclick="openTabs(event, 'accel')">
                             Accelerator</li>
-                        <li class="list-group-item tablinks" onclick="openCity(event, 'lab')">Lab2Launch</li>
-                        <li class="list-group-item tablinks" onclick="openCity(event, 'core')">CORE</li>
-                        <li class="list-group-item tablinks" onclick="openCity(event, 'social')">Social Venture</li>
+                        <li class="list-group-item tablinks" onclick="openTabs(event, 'lab')">Lab2Launch</li>
+                        <li class="list-group-item tablinks" onclick="openTabs(event, 'core')">CORE</li>
+                        <li class="list-group-item tablinks" onclick="openTabs(event, 'social')">Social Venture</li>
                     </ul>
                 </div>
             </div>
@@ -76,8 +76,8 @@
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                 <div class="card-body p-0">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item tablinks" onclick="openCity(event, 'faculty')">Faculties</li>
-                        <li class="list-group-item tablinks" onclick="openCity(event, 'prof')">Professors</li>
+                        <li class="list-group-item tablinks" onclick="openTabs(event, 'faculty')">Faculties</li>
+                        <li class="list-group-item tablinks" onclick="openTabs(event, 'prof')">Professors</li>
                     </ul>
                 </div>
             </div>
@@ -91,7 +91,7 @@
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                 <div class="card-body p-0">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item tablinks" onclick="openCity(event, 'business_courses')">Business and Entrepreneurship</li>
+                        <li class="list-group-item tablinks" onclick="openTabs(event, 'business_courses')">Business and Entrepreneurship</li>
                     </ul>
                 </div>
             </div>
