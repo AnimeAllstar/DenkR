@@ -144,8 +144,8 @@ def searchView(request):
         else:
             queryset = []
             for i in search_value.split(" "):
+                i = i.lower()
                 for j in Post.objects.all():
-                    i = i.lower()
                     lower_titles = [x.lower() for x in j.title.split(" ")]
                     lower_contents = [x.lower() for x in j.content.split(" ")]
                     if i in lower_titles or i in lower_contents:
