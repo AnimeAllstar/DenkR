@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from django.contrib.auth import views as auth_views
 from .views import (
     PostListView,
     PostDetailView,
@@ -26,5 +27,5 @@ urlpatterns = [
     path("university-resources/", views.uni_resources, name="blog-uni-resources"),
     path("investor-forum/", views.forum, name="blog-forum"),
     
-    path('like/',likeView, name='like-post'),
+    path('like/', likeView, name='like-post'),
 ]
