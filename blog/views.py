@@ -147,7 +147,6 @@ def searchView(request):
                 i = i.lower()
                 for j in Post.objects.all():
                     lower_titles = [x.lower() for x in j.title.split(" ")]
-                    lower_contents = [x.lower() for x in j.content.split(" ")]
-                    if i in lower_titles or i in lower_contents:
+                    if i in lower_titles:
                         queryset.append(j)
             return render(request, 'blog/search.html', {'posts': list(set(queryset))})
