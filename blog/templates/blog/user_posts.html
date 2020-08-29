@@ -15,15 +15,6 @@
                     <td class="align-middle">
                         <div class="media-body">
                             <h2>{{ view.kwargs.username }}</h2>
-                            {% if post.author != user %}
-                            {% if post.author in friends %}
-                            <a class="btn btn-outline-primary" id="connect" role="button"
-                                href="{% url 'add-friend' view.kwargs.username %}">Disconnect</a>
-                            {% else %}
-                            <a class="btn btn-outline-primary" id="connect" role="button"
-                                href="{% url 'add-friend' view.kwargs.username %}">Connect</a>
-                            {% endif %}
-                            {%endif%}
                             <p class="text-secondary">{{ post.author.email }} <br>
                                 <!--Change Email Var-->
                                 University of British Columbia <br>
@@ -33,7 +24,21 @@
                     </td>
                 </tr>
             </table>
+        <div>
+            {% if post.author != user %}
+        {% if post.author in friends %}
+        <a class="btn btn-outline-primary" id="connect" role="button"
+            href="{% url 'add-friend' view.kwargs.username %}">Disconnect</a>
+        {% else %}
+        <a class="btn btn-outline-primary" id="connect" role="button"
+            href="{% url 'add-friend' view.kwargs.username %}">Connect</a>
+        {% endif %}
+        {%endif%}
+            </div>
         </div>
+
+
+
 
         {%endif%}
 
