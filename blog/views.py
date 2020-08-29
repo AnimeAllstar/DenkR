@@ -13,7 +13,6 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 
 
-
 class PostListView(ListView):
     model = Post
     template_name = 'blog/home.html'  # <app>/<model>_<viewtype>.html
@@ -31,7 +30,8 @@ class UserPostListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(UserPostListView, self).get_context_data(**kwargs)
-        friend, created = Friend.objects.get_or_create(current_user=self.request.user)
+        friend, created = Friend.objects.get_or_create(
+            current_user=self.request.user)
         friends = friend.users.all()
         context.update({
             'friends': friends,
@@ -120,9 +120,9 @@ def likeView(request):
 
 def add_friend(request, username):
     main_user = request.user
-    to_connect = User.objects.get(username = username)
+    to_connect = User.objects.get(username=username)
 
-    #check if users are already connected
+    # check if users are already connected
     friends = Friend.objects.filter(current_user=main_user, users=to_connect)
     is_connected = True if friends else False
 
@@ -135,3 +135,15 @@ def add_friend(request, username):
 
     return redirect('/user/'+username)
 
+def searchView(request):
+    if request.method == 'GET':
+        queryset = []
+        search_value = request.GET.get('value')
+        for i in search_value.split(" "):
+            for j in Post.objects.all():
+                i = i.lower()
+                lower_titles = [x.lower() for x in j.title.split(" ")]
+                lower_contents = [x.lower() for x in j.content.split(" ")]
+                if i in lower_titles or i in lower_contents:
+                    queryset.append(j)
+        return render(request, 'blog/search.html', {'posts': list(set(queryset))})

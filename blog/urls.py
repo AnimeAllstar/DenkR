@@ -8,6 +8,7 @@ from .views import (
     PostDeleteView,
     UserPostListView,
     likeView,
+    searchView,
 )
 
 
@@ -26,4 +27,5 @@ urlpatterns = [
     path("investor-forum/", views.forum, name="blog-forum"),
     
     path('like/',likeView, name='like-post'),
+    path('search/',searchView, name='search-post')
 ]
