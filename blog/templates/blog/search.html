@@ -1,0 +1,24 @@
+{% extends "blog/home.html" %}
+
+{% block searchResults %}
+
+<script type="text/javascript">
+  window.onload = function getSearch() {
+    var url_string = window.location.href
+    var url = new URL(url_string);
+    var v = url.searchParams.get("value");
+    document.getElementById("searched_val").textContent = v;
+  } 
+</script>
+
+{% if posts|length == 0 %}
+
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">No results</h5>
+    <p class="card-text">There were no results matching your search: "<span id="searched_val"></span>".</p>
+  </div>
+</div>
+
+{% endif %}
+{% endblock searchResults %}

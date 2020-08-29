@@ -8,26 +8,31 @@
         {% if forloop.first %}
 
         <div class="media mt-4 ml-5">
-            <img class="rounded-circle account-img" src="{{ post.author.profile.image.url }}">
-            <div class="media-body">
-                <h2 class="account-heading">{{ view.kwargs.username }}</h2>
-                <p class="text-secondary">{{ post.author.email }} <br>
-                    <!--Change Email Var-->
-                    University of British Columbia <br>
-                    {{ page_obj.paginator.count }} Posts
-                </p>
-            </div>
-
-            {% if post.author != user %}
-            {% if post.author in friends %}
-            <a class="btn btn-outline-primary" id="connect" role="button"
-                    href="{% url 'add-friend' view.kwargs.username %}">Disconnect</a>
-            {% else %}
-            <a class="btn btn-outline-primary" id="connect" role="button"
-                    href="{% url 'add-friend' view.kwargs.username %}">Connect</a>
-            {% endif %}
-            {%endif%}
-
+            <table>
+                <tr>
+                    <td class="align-middle"><img class="rounded-circle account-img"
+                            src="{{ post.author.profile.image.url }}"></td>
+                    <td class="align-middle">
+                        <div class="media-body">
+                            <h2>{{ view.kwargs.username }}</h2>
+                            {% if post.author != user %}
+                            {% if post.author in friends %}
+                            <a class="btn btn-outline-primary" id="connect" role="button"
+                                href="{% url 'add-friend' view.kwargs.username %}">Disconnect</a>
+                            {% else %}
+                            <a class="btn btn-outline-primary" id="connect" role="button"
+                                href="{% url 'add-friend' view.kwargs.username %}">Connect</a>
+                            {% endif %}
+                            {%endif%}
+                            <p class="text-secondary">{{ post.author.email }} <br>
+                                <!--Change Email Var-->
+                                University of British Columbia <br>
+                                {{ page_obj.paginator.count }} Posts
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+            </table>
         </div>
 
         {%endif%}

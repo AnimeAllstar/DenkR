@@ -1,6 +1,5 @@
 from django.urls import path
 from . import views
-from django.contrib.auth import views as auth_views
 from .views import (
     PostListView,
     PostDetailView,
@@ -9,12 +8,12 @@ from .views import (
     PostDeleteView,
     UserPostListView,
     likeView,
+    searchView,
 )
 
 
 urlpatterns = [
     path("", PostListView.as_view(), name="blog-home"),
-    #path("", views.home, name="blog-home"),
     path("user/<str:username>", UserPostListView.as_view(), name="user-posts"),
     path("post/<int:pk>/", PostDetailView.as_view(), name="post-detail"),
     path("post/new/", PostCreateView.as_view(), name="post-create"),
@@ -27,5 +26,6 @@ urlpatterns = [
     path("university-resources/", views.uni_resources, name="blog-uni-resources"),
     path("investor-forum/", views.forum, name="blog-forum"),
     
-    path('like/', likeView, name='like-post'),
+    path('like/',likeView, name='like-post'),
+    path('search/',searchView, name='search-post')
 ]

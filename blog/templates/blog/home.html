@@ -28,11 +28,16 @@
 
     <!--Main-->
 
-    <form class="form-inline mb-4">
-        <input class="form-control mr-sm-2 w-75" type="search" placeholder="Search">
+    <form class="form-inline mb-4" action="{% url 'search-post' %}" method="GET">
+        <input id="input1" class="form-control mr-sm-2 w-75" name="value" type="search" placeholder="Search">
         <button class="btn btn-outline-primary mb-2 my-sm-0" type="submit">Search</button>
     </form>
+
+    {% block searchResults %}
+    {% endblock searchResults %}
+    
     <div class="card-columns">
+
         {% for post in posts %}
 
         <div class="card">

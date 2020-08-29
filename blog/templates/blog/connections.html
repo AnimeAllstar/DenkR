@@ -7,6 +7,18 @@
         height: 100px;
         width: 100px;
     }
+
+    .list-group-item {
+        color: black;
+    }
+
+    .list-group-item:hover {
+        color: black;
+    }
+
+    .list-group a {
+        text-decoration: none !important;
+    }
 </style>
 
 {% endblock childHead %}
@@ -18,9 +30,15 @@
     <div class="card mx-auto">
         <h5 class="card-header"> Connection List </h5>
         <ul class="list-group list-group-flush">
+            {% if friends|length == 0 %}
+            <li class="list-group-item">No Connections</li>
+            {% else %}
             {% for friend in friends %}
-            <li class="list-group-item">{{ friend }}</li>
+            <a href="{% url 'user-posts' friend.username %}" class="nounderline">
+                <li class="list-group-item">{{ friend }}</li>
+            </a>
             {% endfor %}
+            {% endif %}
         </ul>
     </div>
 </div>
@@ -30,7 +48,7 @@
     <!--Invitations-->
 
     <div class="card">
-        <h5 class="card-header">Invitations</h5>
+        <h5 class="card-header">Invitations (Template Only. Coming Soon!)</h5>
         <div class="card-body">
             <table class="table table-borderless">
                 <tr>
@@ -85,7 +103,7 @@
 
     <br>
     <div class="card">
-        <h5 class="card-header">People you may know</h5>
+        <h5 class="card-header">People you may know (Template Only. Coming Soon!)</h5>
         <div class="card-deck p-4">
             <div class="card">
                 <div class="card-body text-center">
