@@ -1,10 +1,11 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
+<div class="col-md-8 px-4">
     <div class="content-section">
         <form method='POST'>
             {% csrf_token %}
-            <fieldset class ="form-group">
+            <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Blog Post</legend>
                 {{ form|crispy }}
             </fieldset>
@@ -13,5 +14,11 @@
             </div>
         </form>
     </div>
-{% endblock content %}
+</div>
 
+<!--SideBar-->
+
+<div class="col-md-3 mb-3 px-4">
+    {% include "blog/sidebar.html" %}
+</div>
+{% endblock content %}

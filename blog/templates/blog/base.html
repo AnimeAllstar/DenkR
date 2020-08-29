@@ -108,6 +108,9 @@
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/c32dd85f4a.js" crossorigin="anonymous"></script>
 
+    <!--head for child templates-->
+    {% block childHead %}{% endblock childHead %}
+
   </head>
 
   <body>
@@ -121,7 +124,7 @@
         <div class="navbar-nav mr-auto">
           <a class="nav-link" href="{% url 'blog-home' %}">Home</a>
           <a class="nav-link" href="{% url 'blog-connections' %}">Connections</a>
-          <a class="nav-link" href="{% url 'blog-top-posts' %}">Top Posts</a>
+          <a class="nav-link" href="{% url 'blog-uni-resources' %}">University Resources</a>
           <a class="nav-link" href="{% url 'blog-forum' %}">Investor Forum</a>
         </div>
         <!-- Navbar Right Side -->
@@ -138,9 +141,9 @@
       </div>
     </nav>
 
-    <div class="row justify-content-center mt-5">
+    <!--Messages-->
 
-      <!--Mainbar-->
+    <div class="row justify-content-center mt-3">
       <div class="col-md-8 px-4">
         {% if messages %}
         {% for message in messages %}
@@ -149,25 +152,13 @@
         </div>
         {% endfor %}
         {% endif %}
-        {% block content %}{% endblock content %}
       </div>
+    </div>
 
-      <!--SideBar-->
+    <!--Child Content-->
 
-      <div class="col-md-3 mb-3 px-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Quickies</h5>
-            <p class="card-text">Check these out!</p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Anouncements</li>
-            <li class="list-group-item">Top Posts</li>
-            <li class="list-group-item">Latest Posts</li>
-          </ul>
-        </div>
-      </div>
-
+    <div class="row justify-content-center mt-3">
+      {% block content %}{% endblock content %}
     </div>
 
     <!-- BootStrap JavaScript -->
@@ -197,4 +188,5 @@
           })
       });
     </script>
+
 </html>

@@ -1,4 +1,154 @@
 {% extends "blog/base.html" %}
-    {% block content %}
-        <h1>This is the start of Connections Page</h1>
-    {% endblock content%}
+
+{% block childHead %}
+
+<style>
+    img {
+        height: 100px;
+        width: 100px;
+    }
+</style>
+
+{% endblock childHead %}
+
+{% block content %}
+<!--Connection List-->
+
+<div class="col-md-3 px-4">
+    <div class="card mx-auto">
+        <h5 class="card-header"> Connection List </h5>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Asad Dhorajiwala</li>
+            <li class="list-group-item">Rithin K</li>
+            <li class="list-group-item">Dhairya</li>
+            <li class="list-group-item">Joey</li>
+            <li class="list-group-item">Matt LeBlanc</li>
+            <li class="list-group-item">Sam Smith</li>
+            <li class="list-group-item">John</li>
+            <li class="list-group-item">Isaac Newton</li>
+        </ul>
+    </div>
+</div>
+
+<div class="col-md-8 mb-3 px-4">
+
+    <!--Invitations-->
+
+    <div class="card">
+        <h5 class="card-header">Invitations</h5>
+        <div class="card-body">
+            <table class="table table-borderless">
+                <tr>
+                    <td class="align-middle"><img
+                            src="https://cdn4.iconfinder.com/data/icons/famous-character-vol-2-flat/48/Avatar_Famous_Characters-14-128.png">
+                    </td>
+                    <td class="align-middle">
+                        <p><b>Amanda</b><br>University of British Columbia</p>
+                    </td>
+                    <td class="align-middle">
+                        <button type="button" class="btn btn-outline-light">Decline</button>
+                    </td>
+                    <td class="align-middle">
+                        <button type="button" class="btn btn-outline-primary">Accept</button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="align-middle"><img
+                            src="https://cdn4.iconfinder.com/data/icons/famous-character-vol-2-flat/48/Avatar_Famous_Characters-41-128.png">
+                    </td>
+                    <td class="align-middle">
+                        <p><b>Gandalf The Great</b><br>Hobbit College</p>
+                    </td>
+                    <td class="align-middle">
+                        <button type="button" class="btn btn-outline-light">Decline</button>
+                    </td>
+                    <td class="align-middle">
+                        <button type="button" class="btn btn-outline-primary">Accept</button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="align-middle"><img
+                            src="https://cdn4.iconfinder.com/data/icons/famous-character-vol-2-flat/48/Avatar_Famous_Characters-19-128.png">
+                    </td>
+                    <td class="align-middle">
+                        <p><b>Fang Yuan</b><br>Beijing University</p>
+                    </td>
+                    <td class="align-middle">
+                        <button type="button" class="btn btn-outline-light">Decline</button>
+                    </td>
+                    <td class="align-middle">
+                        <button type="button" class="btn btn-outline-primary">Accept</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!--Suggested Connections-->
+
+    <br>
+    <div class="card">
+        <h5 class="card-header">People you may know</h5>
+        <div class="card-deck p-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <img
+                        src="https://cdn4.iconfinder.com/data/icons/famous-character-vol-2-flat/48/Avatar_Famous_Characters-38-128.png">
+                    <h5 class="card-title">Lucifer</h5>
+                    <p class="card-text">CEO at Underworld.inc</p>
+                    <p><button type="button" class="btn btn-outline-primary">Connect</button></p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body text-center">
+                    <img
+                        src="https://cdn4.iconfinder.com/data/icons/famous-character-vol-2-flat/48/Avatar_Famous_Characters-38-128.png">
+                    <h5 class="card-title">Lucifer</h5>
+                    <p class="card-text">CEO at Underworld.inc</p>
+                    <p><button type="button" class="btn btn-outline-primary">Connect</button></p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body text-center">
+                    <img
+                        src="https://cdn4.iconfinder.com/data/icons/famous-character-vol-2-flat/48/Avatar_Famous_Characters-38-128.png">
+                    <h5 class="card-title">Lucifer</h5>
+                    <p class="card-text">CEO at Underworld.inc</p>
+                    <p><button type="button" class="btn btn-outline-primary">Connect</button></p>
+                </div>
+            </div>
+        </div>
+        <div class="card-deck p-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <img
+                        src="https://cdn4.iconfinder.com/data/icons/famous-character-vol-2-flat/48/Avatar_Famous_Characters-38-128.png">
+                    <h5 class="card-title">Lucifer</h5>
+                    <p class="card-text">CEO at Underworld.inc</p>
+                    <p><button type="button" class="btn btn-outline-primary">Connect</button></p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body text-center">
+                    <img
+                        src="https://cdn4.iconfinder.com/data/icons/famous-character-vol-2-flat/48/Avatar_Famous_Characters-38-128.png">
+                    <h5 class="card-title">Lucifer</h5>
+                    <p class="card-text">CEO at Underworld.inc</p>
+                    <p><button type="button" class="btn btn-outline-primary">Connect</button></p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body text-center">
+                    <img
+                        src="https://cdn4.iconfinder.com/data/icons/famous-character-vol-2-flat/48/Avatar_Famous_Characters-38-128.png">
+                    <h5 class="card-title">Lucifer</h5>
+                    <p class="card-text">CEO at Underworld.inc</p>
+                    <p><button type="button" class="btn btn-outline-primary">Connect</button></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content%}

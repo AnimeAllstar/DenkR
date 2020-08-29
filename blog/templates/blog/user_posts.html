@@ -1,74 +1,72 @@
 {% extends "blog/base.html" %}
 {% block content %}
+<div class="col-md-8 px-4">
 
-<div class="content-section">
+    <div class="content-section">
 
-    {% for post in posts %}
+        {% for post in posts %}
 
         {% if forloop.first %}
 
-            <div class="media mt-4 ml-5">
-                <img class="rounded-circle account-img" src="{{ post.author.profile.image.url }}">
-                <div class="media-body">
-                    <h2 class="account-heading">{{ view.kwargs.username }}</h2>
-                    <p class="text-secondary">{{ post.author.email }} <br>
-                        <!--Change Email Var-->
-                        University of British Columbia <br>
-                        {{ page_obj.paginator.count }} Posts
-                    </p>
-                </div>
-                <a class="btn btn-outline-primary" id="connect" role="button" href="{% url 'add-friend' view.kwargs.username %}">Connect</a>
-
+        <div class="media mt-4 ml-5">
+            <img class="rounded-circle account-img" src="{{ post.author.profile.image.url }}">
+            <div class="media-body">
+                <h2 class="account-heading">{{ view.kwargs.username }}</h2>
+                <p class="text-secondary">{{ post.author.email }} <br>
+                    <!--Change Email Var-->
+                    University of British Columbia <br>
+                    {{ page_obj.paginator.count }} Posts
+                </p>
             </div>
+            <a class="btn btn-outline-primary" id="connect" role="button"
+                href="{% url 'add-friend' view.kwargs.username %}">Connect</a>
+        </div>
 
         {%endif%}
 
-    {%endfor%}
+        {%endfor%}
 
-    {% for post in posts %}
-    <article class="media content-section p-4 m-4">
-        <div class="media-body">
-            <div class="article-metadata">
-                <small class="text-muted">{{ post.date }}</small>
+        {% for post in posts %}
+        <article class="media content-section p-4 m-4">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <small class="text-muted">{{ post.date }}</small>
+                </div>
+                <h2><a class="article-title" href="{% url 'post-detail' post.id%}">{{ post.title }}</a></h2>
+                <p class="article-content">{{ post.content }}</p>
             </div>
-            <h2><a class="article-title" href="{% url 'post-detail' post.id%}">{{ post.title }}</a></h2>
-            <p class="article-content">{{ post.content }}</p>
-        </div>
-    </article>
+        </article>
+        {% endfor %}
+
+    </div>
+
+
+    {% if is_paginated %}
+    {% if page_obj.has_previous %}
+    <a class="btn btn-outline-primary mb-4" href="?page=1">First</a>
+    <a class="btn btn-outline-primary mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+    {% endif %}
+
+    {% for num in page_obj.paginator.page_range %}
+    {% if page_obj.number == num %}
+    <a class="btn btn-primary mb-4" href="?page={{ num }}">{{ num }}</a>
+    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+    <a class="btn btn-outline-primary mb-4" href="?page={{ num }}">{{ num }}</a>
+    {% endif %}
     {% endfor %}
 
-    {% for post in posts %}
-    <article class="media content-section p-4 m-4">
-        <div class="media-body">
-            <div class="article-metadata">
-                <small class="text-muted">{{ post.date }}</small>
-            </div>
-            <h2><a class="article-title" href="{% url 'post-detail' post.id%}">{{ post.title }}</a></h2>
-            <p class="article-content">{{ post.content }}</p>
-        </div>
-    </article>
-    {% endfor %}
+    {% if page_obj.has_next %}
+    <a class="btn btn-outline-primary mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+    <a class="btn btn-outline-primary mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+    {% endif %}
+    {% endif %}
 
 </div>
 
+<!--SideBar-->
 
-{% if is_paginated %}
-{% if page_obj.has_previous %}
-<a class="btn btn-outline-primary mb-4" href="?page=1">First</a>
-<a class="btn btn-outline-primary mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-{% endif %}
+<div class="col-md-3 mb-3 px-4">
+    {% include "blog/sidebar.html" %}
+</div>
 
-{% for num in page_obj.paginator.page_range %}
-{% if page_obj.number == num %}
-<a class="btn btn-primary mb-4" href="?page={{ num }}">{{ num }}</a>
-{% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-<a class="btn btn-outline-primary mb-4" href="?page={{ num }}">{{ num }}</a>
-{% endif %}
-{% endfor %}
-
-{% if page_obj.has_next %}
-<a class="btn btn-outline-primary mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
-<a class="btn btn-outline-primary mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-{% endif %}
-{% endif %}
 {% endblock content %}
