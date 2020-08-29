@@ -13,21 +13,12 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 
 
-def home(request):
-
-    friend = Friend.objects.get(current_user=request.user)
-    friends = friend.users.all()
-    return render(request, "blog/home.html", {
-        #"friends": Post.objects.all(),
-        'friends2': friends
-    })
-
 
 class PostListView(ListView):
     model = Post
     template_name = 'blog/home.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'posts'
-    ordering = ['-date']
+    order_by = ['-date']
     paginate_by = 15
 
 
@@ -37,6 +28,16 @@ class UserPostListView(ListView):
     context_object_name = 'posts'
     ordering = ['-date']
     paginate_by = 10
+
+    def get_context_data(self, **kwargs):
+        context = super(UserPostListView, self).get_context_data(**kwargs)
+        friend, created = Friend.objects.get_or_create(current_user=self.request.user)
+        friends = friend.users.all()
+        context.update({
+            'friends': friends,
+            'current_user': self.request.user
+        })
+        return context
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
@@ -87,7 +88,13 @@ def about(request):
 
 
 def connections(request):
-    return render(request, "blog/connections.html", {"title": "Your Connections"})
+
+    friend, created = Friend.objects.get_or_create(current_user=request.user)
+    friends = friend.users.all()
+    context = {
+        'friends': friends
+    }
+    return render(request, "blog/connections.html", context)
 
 
 def uni_resources(request):

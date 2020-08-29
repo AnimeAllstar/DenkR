@@ -18,14 +18,9 @@
     <div class="card mx-auto">
         <h5 class="card-header"> Connection List </h5>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">Asad Dhorajiwala</li>
-            <li class="list-group-item">Rithin K</li>
-            <li class="list-group-item">Dhairya</li>
-            <li class="list-group-item">Joey</li>
-            <li class="list-group-item">Matt LeBlanc</li>
-            <li class="list-group-item">Sam Smith</li>
-            <li class="list-group-item">John</li>
-            <li class="list-group-item">Isaac Newton</li>
+            {% for friend in friends %}
+            <li class="list-group-item">{{ friend }}</li>
+            {% endfor %}
         </ul>
     </div>
 </div>
