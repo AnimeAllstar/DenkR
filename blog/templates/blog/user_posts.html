@@ -21,10 +21,10 @@
             {% if post.author != user %}
             {% if post.author in friends %}
             <a class="btn btn-outline-primary" id="connect" role="button"
-                    href="{% url 'add-friend' view.kwargs.username %}">Disconnect</a>
+                href="{% url 'add-friend' view.kwargs.username %}">Disconnect</a>
             {% else %}
             <a class="btn btn-outline-primary" id="connect" role="button"
-                    href="{% url 'add-friend' view.kwargs.username %}">Connect</a>
+                href="{% url 'add-friend' view.kwargs.username %}">Connect</a>
             {% endif %}
             {%endif%}
 
