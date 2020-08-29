@@ -18,11 +18,24 @@
                     </p>
                 </div>
                 <a class="btn btn-outline-primary" id="connect" role="button" href="{% url 'add-friend' view.kwargs.username %}">Connect</a>
+
             </div>
 
         {%endif%}
 
     {%endfor%}
+
+    {% for post in posts %}
+    <article class="media content-section p-4 m-4">
+        <div class="media-body">
+            <div class="article-metadata">
+                <small class="text-muted">{{ post.date }}</small>
+            </div>
+            <h2><a class="article-title" href="{% url 'post-detail' post.id%}">{{ post.title }}</a></h2>
+            <p class="article-content">{{ post.content }}</p>
+        </div>
+    </article>
+    {% endfor %}
 
     {% for post in posts %}
     <article class="media content-section p-4 m-4">

@@ -3,7 +3,6 @@
 {% block content %}
 
 <!--Class Toggle and Reload Cache-->
-
 <script>
     function toggleClass(like_btn) {
         if (like_btn.classList.contains("liked")) {
@@ -59,8 +58,17 @@
             {% endif %}
         </div>
     </div>
-
     {% endfor %}
+    <div>
+        <h2>Friends</h2>
+        {% for friend in friends %}
+        <div>
+            <h3>{{ friend.username }}</h3>
+        </div>
+
+        {% endfor %}
+        <h3>abc</h3>
+    </div>
 </div>
 
 {% if is_paginated %}

@@ -17,11 +17,10 @@ def home(request):
 
     friend = Friend.objects.get(current_user=request.user)
     friends = friend.users.all()
-    context = {
-        "posts": Post.objects.all(),
-        "friends": friends
-    }
-    return render(request, "blog/home.html", context)
+    return render(request, "blog/home.html", {
+        #"friends": Post.objects.all(),
+        'friends2': friends
+    })
 
 
 class PostListView(ListView):
@@ -97,6 +96,7 @@ def top(request):
 
 def forum(request):
     return render(request, "blog/forum.html", {"title": "DenkR - Investor Forum"})
+
 
 def likeView(request):
     if request.method == 'GET':
