@@ -37,7 +37,8 @@ class UserPostListView(LoginRequiredMixin, ListView):
             return context
         else:
             context = super(UserPostListView, self).get_context_data(**kwargs)
-            friend, created = Friend.objects.get_or_create(current_user=self.request.user)
+            friend, created = Friend.objects.get_or_create(
+                current_user=self.request.user)
             friends = friend.users.all()
             context.update({
                 'friends': friends,
@@ -153,9 +154,9 @@ def searchView(request):
         else:
             queryset = []
             for i in search_value.split(" "):
-                i = i.lower()
+                lower_i = i.lower()
                 for j in Post.objects.all():
                     lower_titles = [x.lower() for x in j.title.split(" ")]
-                    if i in lower_titles:
+                    if lower_i in lower_titles or i in j.author.username:
                         queryset.append(j)
             return render(request, 'blog/search.html', {'posts': list(set(queryset))})
