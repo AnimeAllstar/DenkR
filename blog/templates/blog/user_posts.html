@@ -7,38 +7,36 @@
 
         {% if forloop.first %}
 
-        <div class="media mt-4 ml-5">
+        <div class="mb-2 mt-2 pl-5 pt-3">
             <table>
                 <tr>
-                    <td class="align-middle"><img class="rounded-circle account-img"
-                            src="{{ post.author.profile.image.url }}"></td>
+                    <td>
+                        <img class="m-0 rounded-circle account-img" src="{{ post.author.profile.image.url }}">
+                    </td>
                     <td class="align-middle">
-                        <div class="media-body">
-                            <h2>{{ view.kwargs.username }}</h2>
-                            <p class="text-secondary">{{ post.author.email }} <br>
-                                <!--Change Email Var-->
-                                University of British Columbia <br>
-                                {{ page_obj.paginator.count }} Posts
-                            </p>
-                        </div>
+                        <h2>{{ view.kwargs.username }}</h2>
+                        {% if post.author != user %}
+                        {% if post.author in friends %}
+                        <a class="btn btn-outline-primary" id="connect" role="button"
+                            href="{% url 'add-friend' view.kwargs.username %}">Disconnect</a>
+                        {% else %}
+                        <a class="btn btn-outline-primary" id="connect" role="button"
+                            href="{% url 'add-friend' view.kwargs.username %}">Connect</a>
+                        {% endif %}
+                        {%endif%}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <p class="text-secondary">{{ post.author.email }} <br>
+                            <!--Change Email Var-->
+                            University of British Columbia <br>
+                            {{ page_obj.paginator.count }} Posts
+                        </p>
                     </td>
                 </tr>
             </table>
-        <div>
-            {% if post.author != user %}
-        {% if post.author in friends %}
-        <a class="btn btn-outline-primary" id="connect" role="button"
-            href="{% url 'add-friend' view.kwargs.username %}">Disconnect</a>
-        {% else %}
-        <a class="btn btn-outline-primary" id="connect" role="button"
-            href="{% url 'add-friend' view.kwargs.username %}">Connect</a>
-        {% endif %}
-        {%endif%}
-            </div>
         </div>
-
-
-
 
         {%endif%}
 
