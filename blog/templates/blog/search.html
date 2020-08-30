@@ -8,6 +8,8 @@
     var url = new URL(url_string);
     var v = url.searchParams.get("value");
     document.getElementById("searched_val").textContent = v;
+    var param = url.searchParams.get("search_option")
+    document.getElementById("searched_param").textContent = param;
   } 
 </script>
 
@@ -16,7 +18,8 @@
 <div class="card mb-3">
   <div class="card-body">
     <h5 class="card-title">No results</h5>
-    <p class="card-text">There were no results matching your search: "<span id="searched_val"></span>".</p>
+    <p class="card-text">There were no results matching your search: "<span id="searched_val"></span> (by <span
+        id="searched_param"></span>)".</p>
   </div>
 </div>
 

@@ -1,5 +1,17 @@
 {% extends "blog/base.html" %}
 
+{% block childHead %}
+<style>
+    .custom-select {
+        z-index: 1;
+        border-radius: none !important;
+        max-width: 100px;
+        border-color: #007bff;
+        color:#007bff;
+    }
+</style>
+{% endblock childHead %}
+
 {% block content %}
 
 <div class="col-md-8 px-4">
@@ -28,14 +40,20 @@
 
     <!--Main-->
 
-    <form class="w-75 mx-auto form-inline input-group mb-4" action="{% url 'search-post' %}" method="GET">
-        <input id="input1" class="form-control mr-2" name="value" type="search" placeholder="Search">
-        <button class="btn btn-outline-primary mb-2 my-sm-0" type="submit">Search</button>
+    <form class="mx-auto form-inline input-group mb-4" action="{% url 'search-post' %}" method="GET">
+        <input id="input1" class="form-control" name="value" type="search" placeholder="Search Posts By">
+        <select id="optionMenu" name="search_option" class="w-auto custom-select form-control">
+            <option value="Title" selected>Title</option>
+            <option value="User">User</option>
+        </select>
+        <div class="input-group-append">
+            <button class="btn btn-outline-primary" type="submit">Search</button>
+        </div>
     </form>
 
     {% block searchResults %}
     {% endblock searchResults %}
-    
+
     <div class="card-columns">
 
         {% for post in posts %}

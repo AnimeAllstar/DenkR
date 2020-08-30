@@ -152,11 +152,17 @@ def searchView(request):
         if len(search_value.strip()) == 0:
             return HttpResponseRedirect("/")
         else:
+            search_field = str(request.GET.get('search_option'))
             queryset = []
-            for i in search_value.split(" "):
-                lower_i = i.lower()
-                for j in Post.objects.all():
-                    lower_titles = [x.lower() for x in j.title.split(" ")]
-                    if lower_i in lower_titles or i == j.author.username:
-                        queryset.append(j)
+            if search_field != "User":
+                for i in search_value.split(" "):
+                    lower_i = i.lower()
+                    for j in Post.objects.all():
+                        lower_titles = [x.lower() for x in j.title.split(" ")]
+                        if lower_i in lower_titles:
+                            queryset.append(j)
+            else:
+                for k in Post.objects.all():
+                    if search_value.lower() in k.author.username.lower():
+                        queryset.append(k)
             return render(request, 'blog/search.html', {'posts': list(set(queryset))})
