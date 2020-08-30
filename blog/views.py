@@ -157,6 +157,6 @@ def searchView(request):
                 lower_i = i.lower()
                 for j in Post.objects.all():
                     lower_titles = [x.lower() for x in j.title.split(" ")]
-                    if lower_i in lower_titles or i in j.author.username:
+                    if lower_i in lower_titles or i == j.author.username:
                         queryset.append(j)
             return render(request, 'blog/search.html', {'posts': list(set(queryset))})
