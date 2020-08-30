@@ -24,8 +24,7 @@ class PostListView(ListView):
     paginate_by = 15
 
 
-
-class UserPostListView(ListView):
+class UserPostListView(LoginRequiredMixin, ListView):
     model = Post
     template_name = 'blog/user_posts.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'posts'
@@ -51,7 +50,7 @@ class UserPostListView(ListView):
         return Post.objects.filter(author=user).order_by('-date')
 
 
-class PostDetailView(DetailView):
+class PostDetailView(LoginRequiredMixin, DetailView):
     model = Post
 
 
