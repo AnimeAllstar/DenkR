@@ -114,6 +114,11 @@ def forum(request):
     return render(request, "blog/forum.html", {"title": "DenkR - Investor Forum"})
 
 
+@login_required
+def ideathon(request):
+    return render(request, "blog/ideathon.html", {"title": "DenkR - Ideathon"})
+
+
 def likeView(request):
     if request.method == 'GET':
         post_id = request.GET['post_id']

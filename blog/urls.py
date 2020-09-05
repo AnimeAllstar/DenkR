@@ -25,6 +25,7 @@ urlpatterns = [
     path("connections/", views.connections, name="blog-connections"),
     path("university-resources/", views.uni_resources, name="blog-uni-resources"),
     path("investor-forum/", views.forum, name="blog-forum"),
+    path("ideathon/", views.ideathon, name="ideathon"),
     
     path('like/',likeView, name='like-post'),
     path('search/',searchView, name='search-post')
