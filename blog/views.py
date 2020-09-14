@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 
 from users.forms import UserRegisterForm
-from .models import Post, Friend
+from .models import Post, Friend, Ideathon
 from django.contrib.auth.models import User
 from django.views.generic import (
     ListView,
@@ -14,6 +14,8 @@ from django.views.generic import (
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
+from datetime import datetime
+import pytz
 
 
 class PostListView(ListView):
@@ -116,7 +118,21 @@ def forum(request):
 
 @login_required
 def ideathon(request):
-    return render(request, "blog/ideathon.html", {"title": "DenkR - Ideathon"})
+    ideathons = Ideathon.objects.all()
+    myIdeathons = []
+    pastIdeathons = []
+    for x in ideathons:
+        if request.user in x.participants.all():
+            myIdeathons.append(x)
+            utc = pytz.UTC
+            if datetime.now().replace(tzinfo=utc) > x.Date.replace(tzinfo=utc):
+                pastIdeathons.append(x)
+    context = {
+        'myIdeathons': list(set(myIdeathons)),
+        'pastIdeathons': list(set(pastIdeathons)),
+        'currentIdeathon': ideathons.first()
+    }
+    return render(request, "blog/ideathon.html", context)
 
 
 def likeView(request):
@@ -171,3 +187,15 @@ def searchView(request):
                     if search_value.lower() in k.author.username.lower():
                         queryset.append(k)
             return render(request, 'blog/search.html', {'posts': list(set(queryset))})
+
+
+def registerView(request):
+    if request.method == 'GET':
+        current = Ideathon.objects.first()
+        if not request.user in current.participants.all():
+            current.participants.add(request.user)
+            return HttpResponse("User Added")
+        else:
+            return HttpResponse("User Already Present")
+    else:
+        return HttpResponse("Request method is not a GET")

@@ -9,14 +9,50 @@
         bottom: initial;
     }
 
+    .carousel,
+    .carousel-item,
+    .carousel-inner img {
+        width: 100%;
+        min-height: 400px !important;
+    }
+
+
     .list-group-item.active {
-        background-color: #eeeeee;
+        background-color: #efefef;
         border: none;
         color: black;
     }
 
     .list-group-item:hover {
         cursor: pointer;
+    }
+
+    .close:focus {
+        outline: none !important;
+    }
+
+    .zoom-btn:focus {
+        box-shadow: none;
+    }
+
+    .zoom-btn, .common-btn {
+        border: 1px solid #d0d0d0;
+        background-color: white;
+        transition: border 0.5s, color 0.5s;
+    }
+
+    .zoom-btn:hover {
+        border: 1px solid #007bff;
+        color: #007bff;
+    }
+
+    tbody tr:hover {
+        background-color: #e3f2fd;
+    }
+
+    tbody tr {
+        background-color: white;
+        transition: background-color 0.5s;
     }
 </style>
 
@@ -57,30 +93,29 @@
     <div class="main tabcontent card mb-3">
         <div class="card-body">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img class="d-block w-100"
                             src="https://images.unsplash.com/photo-1532622785990-d2c36a76f5a6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
                             alt="First slide">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h2 class="text-white">Take part in the next Hackathon! <h5>Powered by UBC Course Unions</h5></h2>
+                        <div class="carousel-caption">
+                            <h2 class="text-white">Take part in the next Hackathon!</h2>
+                            <h5 class="text-white">Powered by UBC Course Unions</h5>
                             <p>Coming Soon!</p>
-                            <a target="_blank" href="https://forms.gle/WTfLN3kwHsWUgChe8"><button
-                                    class="btn btn-primary">Click
-                                    Here</button></a>
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#exampleModalCenter">
+                                Click Here
+                            </button>
                         </div>
                     </div>
                     <div class="carousel-item">
                         <img class="d-block w-100"
                             src="https://images.unsplash.com/photo-1472289065668-ce650ac443d2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
                             alt="Second slide">
-                        <div class="carousel-caption d-none d-md-block">
+                        <div class="carousel-caption">
                             <h2 class="text-white">What is a Hackathon?</h2>
-                            <p>An online short, intensive, workshop-like experience for students to ideate creative applications using existing univeristy patents and research.
+                            <p>An online short, intensive, workshop-like experience for students to ideate creative
+                                applications using existing univeristy patents and research.
                             </p>
                         </div>
                     </div>
@@ -100,7 +135,8 @@
             <h3 class="my-4 ml-3">How does the Hackathon work?</h3>
             <ul>
                 <li>You are provided with simplified versions of existing research and patented technologies</li>
-                <li>You are given 24 hours to come up with creative applications in the form of products or services using these research and
+                <li>You are given 24 hours to come up with creative applications in the form of products or services
+                    using these research and
                     patents</li>
                 <li>The most innovate products that solve a real world problem win! </li>
                 <li>The winners get a platform to take their innovative product or service to a startup! </li>
@@ -115,11 +151,46 @@
             </ul>
 
             <h3 class="my-4 ml-3">How do I take part?</h3>
-            <p class="ml-3">The Hackathon will be conducted completely online, using Zoom and Zoom breakout rooms!. You must fill a google form below in order to
+            <p class="ml-3">The Hackathon will be conducted completely online, using Zoom and Zoom breakout rooms!. You
+                must fill a google form below in order to
                 recieve a link
                 to the event.</p>
-            <a class="ml-3" target="_blank" href="https://forms.gle/WTfLN3kwHsWUgChe8"><button
-                    class="btn btn-outline-primary">Click Here</button></a>
+
+            <!-- Button trigger modal -->
+            <button type="button" class="ml-3 btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                Click Here
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">{{ currentIdeathon.Name }}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>{{ currentIdeathon.description|safe}}</p>
+                            <p>Date: {{ currentIdeathon.Date}}</p>
+                        </div>
+                        <div class="modal-footer">
+                            {% if not user in currentIdeathon.participants.all %}
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button class="register-wrapper btn btn-primary" data-dismiss="modal">Register</button>
+                            {% else %}
+                            <div class="mx-auto">
+                                <p>You have already registered for this Ideathon! <br> Check out the My Ideathons
+                                    section.</P>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -136,20 +207,54 @@
             <p class="card-text">Here is a list of people taking a part in the upcoming Hackathon!</p>
         </div>
     </div>
+
+    <div class="myIdeathons tabcontent card mb-3">
+        <div class="card-body table-responsive">
+
+            <table class="table">
+                <thead>
+                    <tr style="background-color:#fafafa">
+                        <th class="py-3 border-0">Name</th>
+                        <th class="py-3 border-0">About</th>
+                        <th class="py-3 border-0" style="min-width:100px">Date</th>
+                        <th class="py-3 border-0"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in myIdeathons%}
+                    <tr>
+                        <td class="align-middle">{{ i.Name }}</td>
+                        <td class="align-middle">{{ i.Summary }}</td>
+                        <td class="align-middle">{{ i.Date}}</td>
+                        <td class="align-middle">
+                            {% if not i in pastIdeathons %}
+                            <a href="{{i.link}}" target="_new">
+                                <button type="button" class="px-2 py-1 btn zoom-btn">Zoom</button>
+                            </a>
+                            {% else %}
+                            <button type="button" class="px-2 py-1 btn common-btn" disabled>Zoom</button>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 <!--sideBar-->
 
 <div class="col-md-3 px-4">
     <div class="card mx-auto mb-3">
-        <h5 class="card-header"> More Information </h5>
+        <h5 class="card-header"> More Information</h5>
         <ul class="list-group list-group-flush">
             <li class="list-group-item tablinks" onclick="openTabs(event, 'main')" id="defaultOpen">Main</li>
             <li class="list-group-item tablinks" onclick="openTabs(event, 'unions')">Course Unions</li>
             <li class="list-group-item tablinks" onclick="openTabs(event, 'people')">People</li>
+            <li class="list-group-item tablinks" onclick="openTabs(event, 'myIdeathons')">My Ideathons</li>
         </ul>
     </div>
 </div>
-
 
 {% endblock content%}

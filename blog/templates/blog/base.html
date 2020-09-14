@@ -103,7 +103,6 @@
         background-color: #007bff;
         color: white;
       }
-      
     </style>
 
     <!-- Font Awesome -->
@@ -173,7 +172,7 @@
       integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
       crossorigin="anonymous"></script>
 
-    <!--Ajax like-->
+    <!-- Ajax -->
 
     <script type="text/javascript">
       $('.like-wrapper').click(function (e) {
@@ -189,6 +188,13 @@
             }
           })
       });
-    </script>
 
+      $('.register-wrapper').click(function (e) {
+        $.ajax(
+          {
+            type: "GET",
+            url: "/register-event",
+          })
+      });
+    </script>
 </html>

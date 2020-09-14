@@ -9,6 +9,7 @@ from .views import (
     UserPostListView,
     likeView,
     searchView,
+    registerView,
 )
 
 
@@ -28,5 +29,6 @@ urlpatterns = [
     path("ideathon/", views.ideathon, name="ideathon"),
     
     path('like/',likeView, name='like-post'),
-    path('search/',searchView, name='search-post')
+    path('search/',searchView, name='search-post'),
+    path('register-event/',registerView, name='register-event')
 ]

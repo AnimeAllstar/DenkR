@@ -19,6 +19,9 @@ class Post(models.Model):
 
 class Ideathon(models.Model):
     Name = models.CharField(max_length=50)
+    Summary = models.CharField(max_length=100)
+    description = models.TextField(max_length=500)
+    Date = models.DateTimeField(default=timezone.now)
     link = models.TextField(max_length=150)
     participants = models.ManyToManyField(User,related_name='users_registered')
 
