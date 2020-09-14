@@ -17,6 +17,13 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('post-detail', kwargs={'pk': self.pk})
 
+class Ideathon(models.Model):
+    Name = models.CharField(max_length=50)
+    link = models.TextField(max_length=150)
+    participants = models.ManyToManyField(User,related_name='users_registered')
+
+    def __str__(self):
+        return self.Name
 
 class Friend(models.Model):
     users = models.ManyToManyField(User)
