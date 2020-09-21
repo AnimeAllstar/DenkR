@@ -3,13 +3,8 @@
 {% block searchResults %}
 
 <script type="text/javascript">
-  window.onload = function getSearch() {
-    var url_string = window.location.href
-    var url = new URL(url_string);
-    var v = url.searchParams.get("value");
-    document.getElementById("searched_val").textContent = v;
-    var param = url.searchParams.get("search_option")
-    document.getElementById("searched_param").textContent = param;
+  window.onload = function () {
+    getSearch();
   } 
 </script>
 

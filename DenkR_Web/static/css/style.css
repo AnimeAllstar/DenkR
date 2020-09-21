@@ -1,0 +1,245 @@
+@media (min-width: 27em) {
+  .card-columns {
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+  }
+}
+
+@media (min-width: 62em) {
+  .card-columns {
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
+  }
+}
+
+html,
+body {
+  background-color: #fafafa;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body{
+  margin-top: 4.5rem;
+  color: #333333;
+}
+
+.card,
+.content-section,
+article {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.list-group-item:hover {
+  background-color: #ececec;
+}
+
+.btn-outline-primary:hover {
+  background-color: #e3f2fd;
+  color: #007bff;
+}
+
+.btn-outline-light {
+  color: black;
+}
+
+.btn-outline-light:hover {
+  border: 1px solid black;
+}
+
+.custom-btn {
+  background: none;
+  border: none;
+}
+
+.custom-btn:focus {
+  outline: none;
+}
+
+.liked {
+  color: red;
+}
+
+.liked:hover {
+  color: rgba(250, 0, 0, 0.5);
+}
+
+.unliked {
+  color: #bde3ff;
+}
+
+.unliked:hover {
+  color: #007bff;
+}
+
+.tag {
+  background-color: #bde3ff;
+  color: white;
+  padding: 3px 10px 3px 10px;
+}
+
+.tag:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+
+ul {
+    margin: 0;
+  }
+  
+.content-section {
+  background: #ffffff;
+  padding: 10px 20px;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
+
+.article-title {
+  color: #444444;
+}
+
+a.article-title:hover {
+  color: #428bca;
+  text-decoration: none;
+}
+
+.article-content {
+  white-space: pre-line;
+}
+
+.article-img {
+  height: 65px;
+  width: 65px;
+  margin-right: 16px;
+}
+
+.article-metadata {
+  padding-bottom: 1px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #e3e3e3
+}
+
+.article-metadata a:hover {
+  color: #333;
+  text-decoration: none;
+}
+
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
+.account-heading {
+  font-size: 2.5rem;
+}
+
+.list-group a {
+  text-decoration: none !important;
+}
+
+/*Forum*/
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.forum-main {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
+}
+
+.progress {
+  height: 20px;
+}
+
+.progress-bar {
+  background-color: #55a0f0;
+  color: white;
+  height: 20px;
+}
+
+/*Home*/
+
+.custom-select {
+  z-index: 1;
+  border-radius: none !important;
+  max-width: 100px;
+  border-color: #007bff;
+  color: #007bff;
+}
+
+/*Ideathon*/
+
+.carousel-caption {
+  top: 50%;
+  transform: translateY(-50%);
+  bottom: initial;
+}
+
+.carousel,
+.carousel-item,
+.carousel-inner img {
+  width: 100%;
+  min-height: 400px !important;
+}
+
+
+.list-group-item.active {
+  background-color: #efefef;
+  border: none;
+  color: black;
+}
+
+.list-group-item:hover {
+  cursor: pointer;
+  color: black;
+}
+
+.close:focus {
+  outline: none !important;
+}
+
+.zoom-btn:focus {
+  box-shadow: none;
+}
+
+.zoom-btn,
+.common-btn {
+  border: 1px solid #d0d0d0;
+  background-color: white;
+  transition: border 0.5s, color 0.5s;
+}
+
+.zoom-btn:hover {
+  border: 1px solid #007bff;
+  color: #007bff;
+}
+
+.table tbody tr:hover {
+  background-color: #e3f2fd;
+}
+
+.table tbody tr {
+  background-color: white;
+  transition: background-color 0.5s;
+}
+
+/*University Resources*/
+
+.group-title {
+  cursor: pointer;
+}
+
+.group-title:hover {
+  background-color: #ebebeb;
+}

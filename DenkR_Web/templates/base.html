@@ -11,99 +11,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
       integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-    <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
+    <!--Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
     {% if title %}
     <title>{{title}}</title>
     {% else %}
     <title> DenkR </title>
     {% endif %}
-
-    <!--Internal CSS-->
-
-    <style>
-      @media (min-width: 27em) {
-        .card-columns {
-          -webkit-column-count: 2;
-          -moz-column-count: 2;
-          column-count: 2;
-        }
-      }
-
-      @media (min-width: 62em) {
-        .card-columns {
-          -webkit-column-count: 3;
-          -moz-column-count: 3;
-          column-count: 3;
-        }
-      }
-
-      html,
-      body {
-        background-color: #fafafa;
-        max-width: 100%;
-        overflow-x: hidden;
-      }
-
-      .card,
-      .content-section,
-      article {
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-      }
-
-      .list-group-item:hover {
-        background-color: #ececec;
-      }
-
-      .btn-outline-primary:hover {
-        background-color: #e3f2fd;
-        color: #007bff;
-      }
-
-      .btn-outline-light {
-        color: black;
-      }
-
-      .btn-outline-light:hover {
-        border: 1px solid black;
-      }
-
-      .custom-btn {
-        background: none;
-        border: none;
-      }
-
-      .custom-btn:focus {
-        outline: none;
-      }
-
-      .liked {
-        color: red;
-      }
-
-      .liked:hover {
-        color: rgba(250, 0, 0, 0.5);
-      }
-
-      .unliked {
-        color: #bde3ff;
-      }
-
-      .unliked:hover {
-        color: #007bff;
-      }
-
-      .tag {
-        background-color: #bde3ff;
-        color: white;
-        padding: 3px 10px 3px 10px;
-      }
-
-      .tag:hover {
-        background-color: #007bff;
-        color: white;
-      }
-    </style>
 
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/c32dd85f4a.js" crossorigin="anonymous"></script>
@@ -172,29 +87,8 @@
       integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
       crossorigin="anonymous"></script>
 
-    <!-- Ajax -->
+    <!-- Custom js -->
 
-    <script type="text/javascript">
-      $('.like-wrapper').click(function (e) {
-        e.preventDefault();
-        var id;
-        id = $(this).attr("data-id");
-        $.ajax(
-          {
-            type: "GET",
-            url: "/like",
-            data: {
-              post_id: id
-            }
-          })
-      });
+    <script src="{% static 'js/myscripts.js' %}"></script>
 
-      $('.register-wrapper').click(function (e) {
-        $.ajax(
-          {
-            type: "GET",
-            url: "/register-event",
-          })
-      });
-    </script>
 </html>

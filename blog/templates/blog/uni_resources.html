@@ -1,50 +1,4 @@
-{% extends "blog/base.html" %}
-{% block childHead %}
-<style>
-    .group-title {
-        cursor: pointer;
-    }
-
-    .group-title:hover {
-        background-color: #ebebeb;
-    }
-
-    .list-group-item.active {
-        background-color: #eeeeee;
-        border: none;
-        color: black;
-    }
-
-    .list-group-item:hover {
-        cursor: pointer;
-    }
-</style>
-
-<script>
-    function openTabs(evt, category) {
-        var i, tabcontent, tablinks, selectedtab;
-
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-
-        selectedtab = document.getElementsByClassName(category);
-        for (i = 0; i < selectedtab.length; i++) {
-            selectedtab[i].style.display = "block";
-        }
-
-        evt.currentTarget.className += " active";
-    }
-
-    document.getElementById("defaultOpen").click();
-</script>
-{% endblock childHead %}
+{% extends "base.html" %}
 
 {% block content %}
 <div class="col-md-3 px-4">
@@ -91,7 +45,8 @@
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                 <div class="card-body p-0">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item tablinks" onclick="openTabs(event, 'business_courses')">Business and Entrepreneurship</li>
+                        <li class="list-group-item tablinks" onclick="openTabs(event, 'business_courses')">Business and
+                            Entrepreneurship</li>
                     </ul>
                 </div>
             </div>
@@ -105,56 +60,65 @@
         <div class="card-body">
             <h5 class="card-title">HATCH ACCELERATOR</h5>
             <p class="card-text">
-                entrepreneurship@UBC's HATCH Accelerator Program provides you and your team the support, 
+                entrepreneurship@UBC's HATCH Accelerator Program provides you and your team the support,
                 space and expertise to take your world-changing innovation to the next level.
             </p>
             <p class="card-text">
-                The accelerator is for ventures who have completed the Incubator Program and been invited 
+                The accelerator is for ventures who have completed the Incubator Program and been invited
                 to continue their venture-building journey with entrepreneurship@UBC by joining the HATCH Accelerator.
             </p>
             <p class="card-text">
-                <h6>Intake - January and July</h6>
+            <h6>Intake - January and July</h6>
             </p>
-            <button class="btn tag mb-2" onclick="window.open('https://www.start.entrepreneurship.ubc.ca/hatch')">More Info</button>
+            <button class="btn tag mb-2" onclick="window.open('https://www.start.entrepreneurship.ubc.ca/hatch')">More
+                Info</button>
         </div>
     </div>
-    
+
     <div class="lab tabcontent card mb-3">
         <div class="card-body">
             <h5 class="card-title">Lab2Launch</h5>
             <p class="card-text">
-                entrepreneurship@UBC’s Lab2Launch venture building program is for UBC researchers and scientists who are focusing on the development of a scientific or technological innovation which is unique, proprietary and difficult to reproduce, propelling them through venture creation, team building, investment and growth. 
+                entrepreneurship@UBC’s Lab2Launch venture building program is for UBC researchers and scientists who are
+                focusing on the development of a scientific or technological innovation which is unique, proprietary and
+                difficult to reproduce, propelling them through venture creation, team building, investment and growth.
             </p>
             <p class="card-text">
-                <h6>Application Due Date - August 10th</h6>
+            <h6>Application Due Date - August 10th</h6>
             </p>
-            <button class="btn tag mb-2" onclick="window.open('https://www.start.entrepreneurship.ubc.ca/lab2launch')">More Info</button>
+            <button class="btn tag mb-2"
+                onclick="window.open('https://www.start.entrepreneurship.ubc.ca/lab2launch')">More Info</button>
         </div>
     </div>
 
     <div class="core tabcontent card mb-3">
         <div class="card-body">
             <h5 class="card-title">CORE</h5>
-            <p class="card-text"> 
-                entrepreneurship@UBC’s CORE program is for ventures driving innovation through disruptive technologies, ideas and trends. In CORE, you’ll focus on achieving product-market fit and preparing for investment and growth.
+            <p class="card-text">
+                entrepreneurship@UBC’s CORE program is for ventures driving innovation through disruptive technologies,
+                ideas and trends. In CORE, you’ll focus on achieving product-market fit and preparing for investment and
+                growth.
             </p>
             <p class="card-text">
-                <h6>Application Due Date - August 10th</h6>
+            <h6>Application Due Date - August 10th</h6>
             </p>
-            <button class="btn tag mb-2" onclick="window.open('https://www.start.entrepreneurship.ubc.ca/core')">More Info</button>
+            <button class="btn tag mb-2" onclick="window.open('https://www.start.entrepreneurship.ubc.ca/core')">More
+                Info</button>
         </div>
     </div>
 
     <div class="social tabcontent card mb-3">
         <div class="card-body">
             <h5 class="card-title">Social Venture</h5>
-            <p class="card-text"> 
-                entrepreneurship@UBC’s Social Venture stream supports impact-driven entrepreneurs providing them with the tailored programming, mentorship and resources to help them succeed
+            <p class="card-text">
+                entrepreneurship@UBC’s Social Venture stream supports impact-driven entrepreneurs providing them with
+                the tailored programming, mentorship and resources to help them succeed
             </p>
             <p class="card-text">
-                <h6>Need to be a part of Lab2Launch or CORE</h6>
+            <h6>Need to be a part of Lab2Launch or CORE</h6>
             </p>
-            <button class="btn tag mb-2" onclick="window.open('https://www.start.entrepreneurship.ubc.ca/social-venture')">More Info</button>
+            <button class="btn tag mb-2"
+                onclick="window.open('https://www.start.entrepreneurship.ubc.ca/social-venture')">More Info</button>
         </div>
     </div>
 
@@ -163,27 +127,40 @@
         <div class="card-body">
             <h5 class="card-title">Sauder School of Business</h5>
             <p class="card-text">
-                Entrepreneurship involves disruptive thinking and action. Entrepreneurial thinking and methods are relevant not only to the creation of new ventures, but also to helping grow or fundamentally change existing companies. Corporate innovators or intra-preneurs work with the same skillset as traditional entrepreneurs who start new ventures.
+                Entrepreneurship involves disruptive thinking and action. Entrepreneurial thinking and methods are
+                relevant not only to the creation of new ventures, but also to helping grow or fundamentally change
+                existing companies. Corporate innovators or intra-preneurs work with the same skillset as traditional
+                entrepreneurs who start new ventures.
             </p>
-            <button class="btn tag mb-2" onclick="window.open('https://mybcom.sauder.ubc.ca/courses-money-enrolment/options/entrepreneurship')">More Info</button>
+            <button class="btn tag mb-2"
+                onclick="window.open('https://mybcom.sauder.ubc.ca/courses-money-enrolment/options/entrepreneurship')">More
+                Info</button>
         </div>
     </div>
     <div class="faculty tabcontent card mb-3">
         <div class="card-body">
             <h5 class="card-title">UBC Engineering</h5>
             <p class="card-text">
-                UBC is a growing hub for entrepreneurship, and is enabling the entrepreneurial spirit every step of the way. It has plenty of resources to enable students with great ideas based on new technology to get started on their entrepreneurial journey. Some of these resources include:
+                UBC is a growing hub for entrepreneurship, and is enabling the entrepreneurial spirit every step of the
+                way. It has plenty of resources to enable students with great ideas based on new technology to get
+                started on their entrepreneurial journey. Some of these resources include:
             </p>
-            <button class="btn tag mb-2" onclick="window.open('https://engineering.ubc.ca/academics/undergraduate/entrepreneurship')">More Info</button>
+            <button class="btn tag mb-2"
+                onclick="window.open('https://engineering.ubc.ca/academics/undergraduate/entrepreneurship')">More
+                Info</button>
         </div>
     </div>
 
     <div class="prof tabcontent card mb-3">
         <div class="card-body">
             <h5 class="card-title">Entrepreneruship and Business Professors</h5>
-            <p class="card-text">Our faculty are leading the way in Canada and internationally in business and management research and knowledge dissemination. Faculty regularly provide expert commentary and background on a variety of business topics.
+            <p class="card-text">Our faculty are leading the way in Canada and internationally in business and
+                management research and knowledge dissemination. Faculty regularly provide expert commentary and
+                background on a variety of business topics.
             </p>
-            <button class="btn tag mb-2" onclick="window.open('https://www.sauder.ubc.ca/thought-leadership/faculty-directory')">More Info</button>
+            <button class="btn tag mb-2"
+                onclick="window.open('https://www.sauder.ubc.ca/thought-leadership/faculty-directory')">More
+                Info</button>
         </div>
     </div>
 
@@ -191,21 +168,28 @@
     <div class="business_courses tabcontent card mb-3">
         <div class="card-body">
             <h5 class="card-title"> Intro to Entrepreneruship - COMM 280</h5>
-            <p class="card-text">Do you have what it takes to be an entrepreneur? Want to find out? In this hands-on interactive course, you'll learn about entrepreneurial essentials such as creating viable opportunities; building your founding team; strategic planning; going to market; fleshing out your organization; and looking ahead to the requirements of the future of the business, and your role within it.
-                <h6>Eligibility: This course is open to BCom students in Years 2 and 3, and non-BCom students in Years 2, 3, and 4. </h6>
+            <p class="card-text">Do you have what it takes to be an entrepreneur? Want to find out? In this hands-on
+                interactive course, you'll learn about entrepreneurial essentials such as creating viable opportunities;
+                building your founding team; strategic planning; going to market; fleshing out your organization; and
+                looking ahead to the requirements of the future of the business, and your role within it.
+            <h6>Eligibility: This course is open to BCom students in Years 2 and 3, and non-BCom students in Years 2, 3,
+                and 4. </h6>
             </p>
-            <button class="btn tag mb-2" onclick="window.open('https://mybcom.sauder.ubc.ca/comm280')">More Info</button>
+            <button class="btn tag mb-2" onclick="window.open('https://mybcom.sauder.ubc.ca/comm280')">More
+                Info</button>
         </div>
     </div>
     <div class="business_courses tabcontent card mb-3">
         <div class="card-body">
             <h5 class="card-title"> Entrepreneurship Courses COMM 300-400</h5>
             <p class="card-text">
-                <p>COMM 382	    Economics of Entrepreneurship and Innovation</p>
-                <p>COMM 387     Entrepreneurial Finance</p>
-                <h6>Click More Info for all the courses</h6>
+            <p>COMM 382 Economics of Entrepreneurship and Innovation</p>
+            <p>COMM 387 Entrepreneurial Finance</p>
+            <h6>Click More Info for all the courses</h6>
             </p>
-            <button class="btn tag mb-2" onclick="window.open('https://mybcom.sauder.ubc.ca/courses-money-enrolment/options/entrepreneurship')">More Info</button>
+            <button class="btn tag mb-2"
+                onclick="window.open('https://mybcom.sauder.ubc.ca/courses-money-enrolment/options/entrepreneurship')">More
+                Info</button>
         </div>
     </div>
 </div>
