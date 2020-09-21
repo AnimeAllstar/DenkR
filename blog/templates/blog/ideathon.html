@@ -1,60 +1,6 @@
-{% extends "blog/base.html" %}
+{% extends "base.html" %}
 
 {% block childHead%}
-
-<style>
-    .carousel-caption {
-        top: 50%;
-        transform: translateY(-50%);
-        bottom: initial;
-    }
-
-    .carousel,
-    .carousel-item,
-    .carousel-inner img {
-        width: 100%;
-        min-height: 400px !important;
-    }
-
-
-    .list-group-item.active {
-        background-color: #efefef;
-        border: none;
-        color: black;
-    }
-
-    .list-group-item:hover {
-        cursor: pointer;
-    }
-
-    .close:focus {
-        outline: none !important;
-    }
-
-    .zoom-btn:focus {
-        box-shadow: none;
-    }
-
-    .zoom-btn, .common-btn {
-        border: 1px solid #d0d0d0;
-        background-color: white;
-        transition: border 0.5s, color 0.5s;
-    }
-
-    .zoom-btn:hover {
-        border: 1px solid #007bff;
-        color: #007bff;
-    }
-
-    tbody tr:hover {
-        background-color: #e3f2fd;
-    }
-
-    tbody tr {
-        background-color: white;
-        transition: background-color 0.5s;
-    }
-</style>
 
 <script>
 
@@ -62,26 +8,6 @@
         document.getElementById("defaultOpen").click();
     };
 
-    function openTabs(evt, category) {
-        var i, tabcontent, tablinks, selectedtab;
-
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-
-        selectedtab = document.getElementsByClassName(category);
-        for (i = 0; i < selectedtab.length; i++) {
-            selectedtab[i].style.display = "block";
-        }
-
-        evt.currentTarget.className += " active";
-    }
 </script>
 
 {% endblock childHead %}
@@ -90,7 +16,7 @@
 
 <!--Main-->
 <div class="col-md-7 px-4">
-    <div class="main tabcontent card mb-3">
+    <div class="ideathon-main tabcontent card mb-3">
         <div class="card-body">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
@@ -99,7 +25,7 @@
                             src="https://images.unsplash.com/photo-1532622785990-d2c36a76f5a6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
                             alt="First slide">
                         <div class="carousel-caption">
-                            <h2 class="text-white">Take part in the next Hackathon!</h2>
+                            <h2 class="text-white">Take part in the next Ideathon!</h2>
                             <h5 class="text-white">Powered by UBC Course Unions</h5>
                             <p>Coming Soon!</p>
                             <button type="button" class="btn btn-primary" data-toggle="modal"
@@ -113,7 +39,7 @@
                             src="https://images.unsplash.com/photo-1472289065668-ce650ac443d2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
                             alt="Second slide">
                         <div class="carousel-caption">
-                            <h2 class="text-white">What is a Hackathon?</h2>
+                            <h2 class="text-white">What is a Ideathon?</h2>
                             <p>An online short, intensive, workshop-like experience for students to ideate creative
                                 applications using existing univeristy patents and research.
                             </p>
@@ -132,7 +58,7 @@
 
             <!--Content after Carousel-->
 
-            <h3 class="my-4 ml-3">How does the Hackathon work?</h3>
+            <h3 class="my-4 ml-3">How does the Ideathon work?</h3>
             <ul>
                 <li>You are provided with simplified versions of existing research and patented technologies</li>
                 <li>You are given 24 hours to come up with creative applications in the form of products or services
@@ -146,12 +72,12 @@
             <ul>
                 <li>Access to great patents and research by YOUR university</li>
                 <li>Chance to indulge and connect with great minds in YOUR university</li>
-                <li>Platform to take your hackathon hardwork to a real startup!</li>
+                <li>Platform to take your Ideathon hardwork to a real startup!</li>
                 <li>Opportunity to win big prizes (if you win :)) </li>
             </ul>
 
             <h3 class="my-4 ml-3">How do I take part?</h3>
-            <p class="ml-3">The Hackathon will be conducted completely online, using Zoom and Zoom breakout rooms!. You
+            <p class="ml-3">The Ideathon will be conducted completely online, using Zoom and Zoom breakout rooms!. You
                 must fill a google form below in order to
                 recieve a link
                 to the event.</p>
@@ -197,14 +123,14 @@
     <div class="unions tabcontent card mb-3">
         <div class="card-body">
             <h5 class="card-title">Unions</h5>
-            <p class="card-text"> The Hackathon is powered by Course Unions on Campus!</p>
+            <p class="card-text"> The Ideathon is powered by Course Unions on Campus!</p>
         </div>
     </div>
 
     <div class="people tabcontent card mb-3">
         <div class="card-body">
             <h5 class="card-title">People</h5>
-            <p class="card-text">Here is a list of people taking a part in the upcoming Hackathon!</p>
+            <p class="card-text">Here is a list of people taking a part in the upcoming Ideathon!</p>
         </div>
     </div>
 
@@ -249,7 +175,7 @@
     <div class="card mx-auto mb-3">
         <h5 class="card-header"> More Information</h5>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item tablinks" onclick="openTabs(event, 'main')" id="defaultOpen">Main</li>
+            <li class="list-group-item tablinks" onclick="openTabs(event, 'ideathon-main')" id="defaultOpen">Main</li>
             <li class="list-group-item tablinks" onclick="openTabs(event, 'unions')">Course Unions</li>
             <li class="list-group-item tablinks" onclick="openTabs(event, 'people')">People</li>
             <li class="list-group-item tablinks" onclick="openTabs(event, 'myIdeathons')">My Ideathons</li>
